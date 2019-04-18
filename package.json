@@ -1,0 +1,16 @@
+{
+  "name": "slack-back-end",
+  "version": "1.0.0",
+  "description": "Live Messaging App like Slack or Discord",
+  "main": "index.js",
+  "repository": "git@github.com:StephanieCherubin/Slack-Backend.git",
+  "author": "Stephanie Cherubin",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mongoose": "^5.5.2",
+    "socket.io": "^2.2.0"
+  }
+}
