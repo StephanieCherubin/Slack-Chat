@@ -4,7 +4,10 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 io.on('connection', (socket) => {
+  // Do something when a new socket(client) connection is formed
+  // This file will be read on wehn a new socket connects
   console.log('🔌 New user connected! 🔌');
+  require('./sockets/chat.js');
 })
 
 // Express View Engine for Handlebars

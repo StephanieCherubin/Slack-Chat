@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Slack Backend</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/query/3.3.1/jquery.min.js"></script>
-  <script src="socket.io/socket.io.js"></script>
-  <script src="/public/index.js"></script>
-</head>
-<body>
-  <h1>Socket.io</h1>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slack Backend</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/query/3.3.1/jquery.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="/public/index.js"></script>
+    <link rel="stylesheet" href="/public/index.css">
+  </head>
+  <body>
+    <form action="" class="usernameForm">
+      <input placeholder="Username" type="text" id="usernameInput">
+      <button id="createUserBtn">Join Chat</button>
+    </form>
+  </body>
 </html>
