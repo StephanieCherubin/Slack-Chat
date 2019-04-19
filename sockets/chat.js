@@ -24,6 +24,14 @@ module.exports = (io, socket, onlineUsers, channels) => {
     socket.emit('get online users', onlineUsers);
   })
 
+  //Have the socket join the room of the channel
+  socket.on('user changed channel', (newChannel) => {
+    socket.join(newChannel);
+    socket.emit('user changed channel', {
+      channel : newChannel,
+      messages : channels[newChannel]
+    });
+
   //This fires when a user closes out of the application
   socket.on('disconnect', () => {
     //This deletes the user by using the username we saved to the socket
