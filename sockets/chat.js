@@ -5,6 +5,7 @@ module.exports = (io, socket, onlineUsers, channels) => {
     // Save the username as key to access the user's socket id
     onlineUsers[username] = socket.id;
     // save the username to socket as well. This is important for later
+    socket["username"] = username;
     console.log(`✋ ${username} has joined the chat! ✋`);
     //Send the username to all clients currently connected
     io.emit("new user", username);
