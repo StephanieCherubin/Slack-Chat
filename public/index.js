@@ -4,6 +4,9 @@ $(document).ready(()=>{
   // Keep track of the current user
   let currentUser;
 
+  //Get the online users from the server
+  socket.emit('get online users');
+
   $('#createUserBtn').click((e)=>{
     e.preventDefault();
     if($('#usernameInput').val().length > 0){

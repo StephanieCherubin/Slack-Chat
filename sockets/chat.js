@@ -1,7 +1,10 @@
-module.exports = (io, socket) => {
+module.exports = (io, socket, onlineUsers) => {
 
   // Listen for "new user" socket emits
   socket.on('new user', (username) => {
+    // Save the username as key to access the user's socket id
+    onlineUsers[username] = socket.id;
+    // save the username to socket as well. This is important for later
     console.log(`✋ ${username} has joined the chat! ✋`);
     //Send the username to all clients currently connected
     io.emit("new user", username);
@@ -12,7 +15,11 @@ module.exports = (io, socket) => {
     // Send that data back to ALL clients
     console.log(`🎤 ${data.sender}: ${data.message} 🎤`)
     io.emit('new message', data);
-    
+  })
+
+  socket.on('get online users', () => {
+    // send over the onlineUsers
+    socket.emit('get online users', onlineUsers);
   })
 
 }
