@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Make Chat</title>
+    <title>Slack Backend</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="/public/index.js"></script>
@@ -14,5 +14,27 @@
       <input placeholder="Username" type="text" id="usernameInput">
       <button id="createUserBtn">Join Chat</button>
     </form>
+
+    <div class="mainContainer">
+      <div class="channelsAndUsersOnlineContainer">
+        <h1 class="brand">Make Chat</h1>
+        <div class="channels">
+            <h2 class="channelsLabel">Channels</h2>
+            <div class="newChannelForm"><input id="newChannelInput" placeholder="New Channel" /><button id="newChannelBtn">Create</button></div>
+            <div class="channel-current">General</div>
+        </div>
+        <h2>Online Users</h2>
+        <div class="usersOnline"></div>
+      </div>
+      <div class="chatContainer">
+        <div class="chatContainerFluid">
+          <div class="messageContainer">
+              <h2>Messages</h2>
+          </div>
+          <div class="textChatDivide"></div>
+          <div class="chatBox"><textarea id="chatInput" placeholder="Type a message"></textarea><button class="btn" id="sendChatBtn">Send</button></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
