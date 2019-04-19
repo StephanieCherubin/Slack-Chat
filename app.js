@@ -1,20 +1,19 @@
 const express = require('express');
 const app = express();
-// socket.io has to use the http server
 const server = require('http').Server(app);
+
+//Socket.io
 const io = require('socket.io')(server);
-io.on('connection', (socket) => {
-  // Do something when a new socket(client) connection is formed
-  // This file will be read on wehn a new socket connects
-  console.log('🔌 New user connected! 🔌');
-  require('./sockets/chat.js');
+io.on("connection", (socket) => {
+  // This file will be read on new socket connections
+  require('./sockets/chat.js')(io, socket);
 })
 
-// Express View Engine for Handlebars
-const exphs = require('express-handlebars');
-app.engine('handlebars', exphs());
+//Express View Engine for Handlebars
+const exphbs  = require('express-handlebars');
+app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-// Establish your public folder
+//Establish your public folder
 app.use('/public', express.static('public'))
 
 app.get('/', (req, res) => {
