@@ -24,7 +24,7 @@ $(document).ready(()=>{
     // Get the message text value
     let message = $('#chatInput').val();
     // Make sure it's not empty
-    if(message.length >){
+    if(message.length > 0){
       // Emit the message with the current user to the server
       socket.emit('new message', {
         sender : currentUser,
@@ -39,7 +39,7 @@ $(document).ready(()=>{
     console.log(`${username} has joined the chat`);
     // Add the new user to the online users div
     $('.usersOnline').append(`<div class="userOnline">${username}</div>`);
-  })
+  });
 
   // output the new message
   socket.on('new message', (data) => {
@@ -49,6 +49,21 @@ $(document).ready(()=>{
         <p class="messageText">${data.message}</p>
       </div>
     `);
+  });
+
+  socket.on('get online users', (onlineUsers) => {
+    // You may have not seen this for loop before. It's syntax for(key in obj)
+    // our usernames are keys in the object of onlineUsers.
+    for (username in onlineUsers) {
+      $('.usersOnline').append(`<div class="userOnline">${username}</div>`);
+    }
   })
 
+  //refresh the online user list
+  socket.on('user has left', (onlineUsers) => {
+    $('.usersOnline').empty();
+    for (username in onlineUsers) {
+      $('.usersOnline').append(`<p>${username}</p>`)
+    }
+  });
 })
