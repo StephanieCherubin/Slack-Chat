@@ -1,24 +1,23 @@
-$(document).ready(()=>{
-
+$(document).ready(() => {
   const socket = io.connect();
 
   // Keep track of the current user
   let currentUser;
 
-  //Get the online users from the server
+  // Get the online users from the server
   socket.emit('get online users');
   // Each user should be in the general channel by default.
-  socket.emit('user changed channel', "General");
+  socket.emit('user changed channel', 'General');
 
-  //Users can change the channel by clicking on its name.
+  // Users can change the channel by clicking on its name.
   $(document).on('click', '.channel', (e) => {
-    let newChannel = e.target.textContext;
+    const newChannel = e.target.textContext;
     socket.emit('user changed channel', newChannel);
   });
 
-  $('#createUserBtn').click((e)=>{
+  $('#createUserBtn').click((e) => {
     e.preventDefault();
-    if($('#usernameInput').val().length > 0){
+    if ($('#usernameInput').val().length > 0) {
       socket.emit('new user', $('#usernameInput').val());
       // Save the current user when created
       currentUser = $('#usernameInput').val();
@@ -30,34 +29,34 @@ $(document).ready(()=>{
 
   $('#sendChatBtn').click((e) => {
     e.preventDefault();
-    //Get the client's channel
-    let channel = $('.channel-current').text();
+    // Get the client's channel
+    const channel = $('.channel-current').text();
     // Get the message text value
-    let message = $('#chatInput').val();
+    const message = $('#chatInput').val();
     // Make sure it's not empty
-    if(message.length > 0){
+    if (message.length > 0) {
       // Emit the message with the current user to the server
       socket.emit('new message', {
-        sender : currentUser,
-        message : message,
+        sender: currentUser,
+        message,
         // send the channel over to the server
-        channel : channel
+        channel,
       });
-      $('#chatInput').val("");
+      $('#chatInput').val('');
     }
   });
 
-  $('#newChannelBtn').click( () => {
-    let newChannel = $('#newChannelInput').val();
-  
-    if(newChannel.length > 0){
+  $('#newChannelBtn').click(() => {
+    const newChannel = $('#newChannelInput').val();
+
+    if (newChannel.length > 0) {
       // Emit the new channel to the server
       socket.emit('new channel', newChannel);
-      $('#newChannelInput').val("");
+      $('#newChannelInput').val('');
     }
-  })
+  });
 
-  //socket listeners
+  // socket listeners
   socket.on('new user', (username) => {
     console.log(`${username} has joined the chat`);
     // Add the new user to the online users div
@@ -67,7 +66,7 @@ $(document).ready(()=>{
   // output the new message
   socket.on('new message', (data) => {
     // Only append the message if the user is currently in that channel
-    let currentChannel = $('.channel-current').text();
+    const currentChannel = $('.channel-current').text();
     if (currentChannel == data.channel) {
       $('.messageContainer').append(`
       <div class="message">
@@ -88,10 +87,10 @@ $(document).ready(()=>{
     }
   });
 
-  //Refresh the online user list
+  // Refresh the online user list
   socket.on('user has left', (onlineUsers) => {
     $('.usersOnline').empty();
-    for(username in onlineUsers){
+    for (username in onlineUsers) {
       $('.usersOnline').append(`
         <p>${username}</p>
       `);
@@ -121,5 +120,5 @@ $(document).ready(()=>{
         </div>
       `);
     });
-  })
-})
+  });
+});
