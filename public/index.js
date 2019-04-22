@@ -47,6 +47,16 @@ $(document).ready(()=>{
     }
   });
 
+  $('#newChannelBtn').click( () => {
+    let newChannel = $('#newChannelInput').val();
+  
+    if(newChannel.length > 0){
+      // Emit the new channel to the server
+      socket.emit('new channel', newChannel);
+      $('#newChannelInput').val("");
+    }
+  })
+
   //socket listeners
   socket.on('new user', (username) => {
     console.log(`${username} has joined the chat`);
@@ -69,34 +79,30 @@ $(document).ready(()=>{
   });
 
   socket.on('get online users', (onlineUsers) => {
-    // You may have not seen this for loop before. It's syntax for(key in obj)
+    // for(key in obj)
     // our usernames are keys in the object of onlineUsers.
     for (username in onlineUsers) {
-      $('.usersOnline').append(`<div class="userOnline">${username}</div>`);
+      $('.usersOnline').append(`
+        <div class="userOnline">${username}</div>
+      `);
     }
-  })
+  });
 
   //Refresh the online user list
   socket.on('user has left', (onlineUsers) => {
     $('.usersOnline').empty();
     for(username in onlineUsers){
-      $('.usersOnline').append(`<p>${username}</p>`);
+      $('.usersOnline').append(`
+        <p>${username}</p>
+      `);
     }
   });
 
-  $('#newChannelBtn').click( () => {
-    let newChannel = $('#newChannelInput').val();
-  
-    if(newChannel.length > 0){
-      // Emit the new channel to the server
-      socket.emit('new channel', newChannel);
-      $('#newChannelInput').val("");
-    }
-  })
-
   // Add the new channel to the channels list (Fires for all clients)
   socket.on('new channel', (newChannel) => {
-    $('.channels').append(`<div class="channel">${newChannel}</div>`);
+    $('.channels').append(`
+      <div class="channel">${newChannel}</div>
+    `);
   });
 
   // Make the channel joined the current channel. Then load the messages.
