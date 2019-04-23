@@ -4,7 +4,7 @@ module.exports = (io, socket, onlineUsers, channels) => {
     // Save the username as key to access the user's socket id
     onlineUsers[username] = socket.id;
     // save the username to socket as well. This is important for later
-    socket['username'] = username;
+    socket.username = username;
     console.log(`✋ ${username} has joined the chat! ✋`);
     // Send the username to all clients currently connected
     io.emit('new user', username);
@@ -13,7 +13,9 @@ module.exports = (io, socket, onlineUsers, channels) => {
   // Listen for new messages
   socket.on('new message', (data) => {
     // Save the new message to the channel.
-    console.log(`${data.sender}: ${data.message}`);
+    // console.log(`${data.sender}: ${data.message}`);
+    console.log(data);
+    
     channels[data.channel].push({
       sender: data.sender,
       message: data.message,
@@ -36,6 +38,7 @@ module.exports = (io, socket, onlineUsers, channels) => {
 
   socket.on('new channel', (newChannel) => {
     // Save the new channel to our channels object. The array will hold the messages.
+    console.log(newChannel);
     channels[newChannel] = [];
     // Have the socket join the new channel room.
     socket.join(newChannel);

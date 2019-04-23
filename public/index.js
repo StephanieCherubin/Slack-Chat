@@ -11,7 +11,7 @@ $(document).ready(() => {
 
   // Users can change the channel by clicking on its name.
   $(document).on('click', '.channel', (e) => {
-    const newChannel = e.target.textContext;
+    const newChannel = e.target.textContent;
     socket.emit('user changed channel', newChannel);
   });
 

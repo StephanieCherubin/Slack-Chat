@@ -10,7 +10,7 @@ const io = require('socket.io')(server);
 const onlineUsers = {};
 
 // Save the channels in this object.
-const channels = {"General" : []}
+let channels = { General: [] };
 
 io.on('connection', (socket) => {
   // Make sure to send the users to our chat file
