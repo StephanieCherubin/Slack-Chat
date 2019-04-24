@@ -11,7 +11,7 @@
     "yarn": "^0.21"
   },
   "scripts": {
-    "start": "yarn start"
+    "start": "node app.js"
   },
   "dependencies": {
     "eslint": "^5.16.0",
