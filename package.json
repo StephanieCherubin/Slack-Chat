@@ -7,6 +7,12 @@
   "author": "Stephanie Cherubin",
   "license": "MIT",
   "private": false,
+  "engines": {
+    "yarn": "^0.21"
+  },
+  "scripts": {
+    "start": "yarn start"
+  },
   "dependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
