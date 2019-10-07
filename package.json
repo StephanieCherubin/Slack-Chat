@@ -17,8 +17,10 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
+    "eslint-utils": "^1.4.2",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
+    "lodash": "^4.17.15",
     "mongoose": "^5.5.2",
     "socket.io": "^2.2.0"
   }
