@@ -14,14 +14,14 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-utils": "^2.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-utils": "^3.0.0",
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.1",
+    "express-handlebars": "^5.3.3",
     "lodash": "^4.17.21",
-    "mongoose": "^5.9.7",
-    "socket.io": "^2.4.0"
+    "mongoose": "^5.13.6",
+    "socket.io": "^4.1.3"
   }
 }
